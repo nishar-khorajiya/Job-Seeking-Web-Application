@@ -32,6 +32,7 @@ const Application = () => {
     formData.append("coverLetter", coverLetter);
     formData.append("resume", resume);
     formData.append("jobId", id);
+    // formData.append("userId", user.id);
 
     try {
       const { data } = await axios.post(

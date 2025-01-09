@@ -4,7 +4,8 @@ import User from "../models/userSchema.js";
 import ErrorHandler from "../middlewares/error.js";
 
 export const getAllJobs = catchAsyncErrors(async (req, res, next) => {
-  const jobs = await Job.findAll({ where: { expired: false } });
+  const jobs = await Job.findAll({});
+  
   res.status(200).json({
     success: true,
     jobs,

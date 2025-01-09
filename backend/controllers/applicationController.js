@@ -48,7 +48,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     coverLetter,
     phone:phone.toString(),
     address,
-    applicantId:jobId,
+    applicantId:req.user.id,
     employerId:employerID,
     resumePublicId:cloudinaryResponse.public_id,
     resumeUrl:cloudinaryResponse.secure_url
@@ -88,9 +88,11 @@ export const jobseekerGetAllApplications = catchAsyncErrors(
         new ErrorHandler("Employer not allowed to access this resource.", 400)
       );
     }
+   
     const applications = await Application.findAll({
       where: { applicantId: req.user.id },
     });
+    
     res.status(200).json({
       success: true,
       applications,
